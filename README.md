@@ -18,7 +18,16 @@ Se aplicaron dos enfoques para la optimización de hiperparámetros:
 1. **GridSearchCV** → Exploración exhaustiva de combinaciones de hiperparámetros.
 2. **RandomizedSearchCV** → Búsqueda aleatoria con 25 iteraciones.
 
-Los mejores hiperparámetros encontrados para el modelo optimizado fueron:
+Los mejores hiperparámetros encontrados para los modelos optimizados fueron:
+
+### Modelo optimizado con GridSearchCV:
+- `n_estimators = 100`
+- `max_depth = 20`
+- `min_samples_split = 10`
+- `min_samples_leaf = 2`
+- `max_features = 'log2'`
+
+### Modelo optimizado con RandomizedSearchCV:
 - `n_estimators = 100`
 - `max_depth = 20`
 - `min_samples_split = 10`
@@ -29,8 +38,14 @@ Los mejores hiperparámetros encontrados para el modelo optimizado fueron:
 Ambos modelos lograron una **precisión del 98.67%** en el conjunto de prueba, asegurando una clasificación confiable de billetes falsos y genuinos.
 
 ## Uso del Modelo Guardado
-Para cargar y usar el modelo en un entorno de Python:
+Para cargar y usar los modelos en un entorno de Python:
 ```python
 import joblib
-modelo = joblib.load("modelo_random_forest.pkl")
-resultado = modelo.predict(nuevos_datos)
+
+# Cargar modelo optimizado con GridSearchCV
+modelo_grid = joblib.load("modelo_random_forest.pkl")
+resultado_grid = modelo_grid.predict(nuevos_datos)
+
+# Cargar modelo optimizado con RandomizedSearchCV
+modelo_random = joblib.load("modelo_random_forest_randomized.pkl")
+resultado_random = modelo_random.predict(nuevos_datos)
